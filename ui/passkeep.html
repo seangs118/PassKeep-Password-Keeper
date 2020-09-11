@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+</head>
+
+
+<script>
+    function openTab(evt, TabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(TabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+</script>
+
+<body>
+<!-- Tab links -->
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'New')">New Password</button>
+    <button class="tablinks" onclick="openTab(event, 'Login')">Login to a Website</button>
+    <button class="tablinks" onclick="openTab(event, 'ModifyUsername')">Modify Username</button>
+    <button class="tablinks" onclick="openTab(event, 'ModifyPassword')">Modify Password or Both</button>
+    <button class="tablinks" onclick="openTab(event, 'Delete')">Delete</button>
+    <button class="tablinks" onclick="openTab(event, 'Logout')">Logout of Passkeep</button>
+    <button class="tablinks" onclick="openTab(event, 'Reset')">Reset your PassKeep to Factory Settings</button>
+  </div>
+  
+  <!-- Tab content -->
+<div id="New" class="tabcontent">
+    <form style="text-align: center;" action="/new" method="POST" autocomplete="off">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" value=""><br><br>
+            
+            <label for="website">Website URL:</label><br>
+            <input type="text" id="website" name="website" value=""><br><br>
+           
+            <label for="length">How long should the password be?:</label><br>
+            <input type="text" id="length" name="length" value=""><br><br>
+
+            <label for="special">How many special charaters should it have?</label><br>
+            <input type="text" id="special" name="special" value=""><br><br>
+
+            <label for="caps">How many capital letters should it have?</label><br>
+            <input type="text" id="caps" name="caps" value=""><br><br>
+
+            <label for="nums">How many numbers should it have?</label><br>
+            <input type="text" id="nums" name="nums" value=""><br><br>
+           
+            <input type="submit" value="Submit">
+    </form>
+</div>
+  
+<div id="Login" class="tabcontent">
+    <form style="text-align: center;" action="/login" method="POST" autocomplete="off">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" value=""><br><br>
+        
+        <label for="website">Website URL:</label><br>
+        <input type="text" id="website" name="website" value=""><br><br>
+    
+        <input type="submit" value="Submit">
+    </form>  
+</div>
+  
+<div id="ModifyUsername" class="tabcontent">
+    <form style="text-align: center;" action="/modifyusername" method="POST" autocomplete="off">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" value=""><br><br>
+        
+        <label for="website">Website URL:</label><br>
+        <input type="text" id="website" name="website" value=""><br><br>
+       
+        <label for="usernameNew">What is the new username:</label><br>
+        <input type="text" id="usernameNew" name="usernameNew" value=""><br><br>
+        
+        <input type="submit" value="Submit">
+   
+    </form>
+</div> 
+
+<div id="ModifyPassword" class="tabcontent">
+  <form style="text-align: center;" action="/modifypassword" method="POST" autocomplete="off">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" value=""><br><br>
+
+    <label for="usernameNew">New username (type in same one if no change):</label><br>
+    <input type="text" id="usernameNew" name="usernameNew" value=""><br><br>
+    
+    <label for="website">Website URL:</label><br>
+    <input type="text" id="website" name="website" value=""><br><br>
+   
+    <label for="length">How long should the password be?:</label><br>
+    <input type="text" id="length" name="length" value=""><br><br>
+
+    <label for="special">How many special charaters should it have?</label><br>
+    <input type="text" id="special" name="special" value=""><br><br>
+
+    <label for="caps">How many capital letters should it have?</label><br>
+    <input type="text" id="caps" name="caps" value=""><br><br>
+
+    <label for="nums">How many numbers should it have?</label><br>
+    <input type="text" id="nums" name="nums" value=""><br><br>
+      
+      <input type="submit" value="Submit">
+ 
+  </form>
+</div> 
+
+<div id="Delete" class="tabcontent">
+    <form style="text-align: center;" action="/delete" method="POST" autocomplete="off">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" value=""><br><br>
+
+        <label for="website">Website URL:</label><br>
+        <input type="text" id="website" name="website" value=""><br><br>
+
+        <input type="submit" value="Submit">
+
+    </form>
+</div> 
+
+<div id="Logout" class="tabcontent">
+    <form style="text-align: center;" action="/logout" method="POST" autocomplete="off">
+        <label for="logout">Are you sure you want to logout?</label><br>
+        <input type="text" id="logout" name="logout" value=""><br><br>
+        
+        <input type="submit" value="Submit">
+
+    </form>
+</div> 
+
+<div id="Reset" class="tabcontent">
+    <form style="text-align: center;" action="/reset" method="POST" autocomplete="off">
+        <label for="reset">Are you sure you want to reset to factory settings? You will lose all of your information.</label><br>
+        <input type="text" id="reset" name="reset" value=""><br><br>
+
+        <label for="password"> What is your Passkeep password?</label><br>
+        <input type="text" id="password" name="password" value=""><br><br>
+
+        <input type="submit" value="Submit">
+
+    </form>
+</div> 
+
+</body>
+</html>
